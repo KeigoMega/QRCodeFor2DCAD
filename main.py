@@ -1,25 +1,37 @@
-# v201130-0954
+# v201130-1441
 
 import qrcode
 import sys
 
+qr_box_size_table = {
+    'A4': 2,
+    'A3': 2,
+    'A2': 3,
+    'A1': 4,
+    'A0': 6,
+}
+
+qr_size_table = {
+    'A4': 54,
+    'A3': 54,
+    'A2': 81,
+    'A1': 108,
+    'A0': 162,
+}
+
 def paperSize2qrSize(paper_size=''):
     print(f'paper_size: {paper_size}')
-    qr_box_size = 1
-    qr_size = (54, 54)
+    qr_box_size_default = 1
+    qr_box_size = qr_box_size_default
+    qr_size_default = 54
+    qr_size = (qr_box_size_default, qr_box_size_default)
     if paper_size != '':
-        if paper_size in {'A4', 'A3'}:
-            qr_box_size = 2
-            qr_size = (54, 54)
-        elif paper_size == 'A2':
-            qr_box_size = 3
-            qr_size = (81, 81)
-        elif paper_size == 'A1':
-            qr_box_size = 4
-            qr_size = (108, 108)
-        elif paper_size == 'A0':
-            qr_box_size = 6
-            qr_size = (162, 162)
+        qr_box_size = qr_box_size_table.get(paper_size)
+        if qr_box_size == None:
+            qr_box_size = qr_box_size_default
+        qr_size = (qr_size_table.get(paper_size), qr_size_table.get(paper_size))
+        if qr_size == (None, None):
+            qr_size = (qr_size_default, qr_size_default)
     return qr_box_size, qr_size
 
 def createQrImg(qr_texts, qr_box_size=1, qr_size=''):
