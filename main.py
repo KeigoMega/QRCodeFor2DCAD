@@ -1,4 +1,4 @@
-# v201130-1441
+# v201201-1127
 
 import qrcode
 import sys
@@ -12,11 +12,11 @@ qr_box_size_table = {
 }
 
 qr_size_table = {
-    'A4': 54,
-    'A3': 54,
-    'A2': 81,
-    'A1': 108,
-    'A0': 162,
+    'A4': 58, #54,
+    'A3': 58, #54,
+    'A2': 87, #81,
+    'A1': 116, #108,
+    'A0': 174, # 162,
 }
 
 def paperSize2qrSize(paper_size=''):
@@ -40,7 +40,7 @@ def createQrImg(qr_texts, qr_box_size=1, qr_size=''):
     qr_base.add_data(qr_texts)
     qr_base.make()
     result_qr = qr_base.make_image()
-    #result_qr = result_qr.resize(qr_size) #画素の荒れがすごい
+    result_qr = result_qr.resize(qr_size)
     return result_qr
 
 def main(args):
