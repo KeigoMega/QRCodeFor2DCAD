@@ -1,4 +1,4 @@
-# v201201-1127
+# v201201-1211
 
 import qrcode
 import sys
@@ -53,7 +53,8 @@ def main(args):
         paper_size = args[2]
     qr_box_size, qr_size = paperSize2qrSize(paper_size)
     result_qr = createQrImg(qr_texts, qr_box_size, qr_size)
-    result_qr.save(f'C:\\TEMP\\{qr_texts}.tif', 'tiff')
+    #result_qr.save(f'C:\\TEMP\\{qr_texts}.tif', 'tiff')
+    result_qr.save(f'C:\\TEMP\\QR.tif', 'tiff')
 
 if __name__ == "__main__":
     main(sys.argv)
