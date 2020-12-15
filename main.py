@@ -1,4 +1,4 @@
-# v201201-1211
+# v201216-0037
 
 import qrcode
 import sys
@@ -39,7 +39,7 @@ def createQrImg(qr_texts, qr_box_size=1, qr_size=''):
     qr_base = qrcode.QRCode(box_size=qr_box_size)
     qr_base.add_data(qr_texts)
     qr_base.make()
-    result_qr = qr_base.make_image()
+    result_qr = qr_base.make_image(back_color="#FFFFFF", fill_color="#000000")
     result_qr = result_qr.resize(qr_size)
     return result_qr
 
