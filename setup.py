@@ -6,6 +6,6 @@ sys.argv.append('py2exe')
 setup(
     console = [{
             'script': "main.py",
-            'icon_resources': [(1, "QR4CAD.ico")],
+            'icon_resources': [(1, "images/QR4CAD.ico")],
             }]
 )

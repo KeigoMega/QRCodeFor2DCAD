@@ -1,4 +1,4 @@
-# v201216-0037
+# v201216-0826
 
 import qrcode
 import sys
