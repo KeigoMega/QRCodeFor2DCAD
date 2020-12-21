@@ -1,4 +1,4 @@
-# v201221-1446
+# v201221-1549
 
 import qrcode
 import sys
@@ -34,12 +34,17 @@ def paperSize2qrSize(paper_size=''):
             qr_size = (qr_size_default, qr_size_default)
     return qr_box_size, qr_size
 
-def createQrImg(qr_texts, qr_box_size=1, qr_size=''):
+def createQrImg(qr_texts, qr_box_size=1, qr_size='', tif_or_bmp='tif'):
     print(f'qr_texts: {qr_texts}, qr_size: {qr_size}')
     qr_base = qrcode.QRCode(box_size=qr_box_size)
     qr_base.add_data(qr_texts)
     qr_base.make()
-    result_qr = qr_base.make_image(back_color="white", fill_color="black")
+    if tif_or_bmp == 'bmp':
+        result_qr = qr_base.make_image(back_color="white", fill_color="black")
+    elif tif_or_bmp == 'tif':
+        result_qr = qr_base.make_image(back_color="#FFFFFF", fill_color="#000000")
+    else:
+        result_qr = qr_base.make_image(back_color="#FFFFFF", fill_color="#000000")
     result_qr = result_qr.resize(qr_size)
     return result_qr
 
@@ -55,11 +60,13 @@ def main(args):
     if len(args) >= 4:
         tif_or_bmp = args[3]
     qr_box_size, qr_size = paperSize2qrSize(paper_size)
-    result_qr = createQrImg(qr_texts, qr_box_size, qr_size)
-    if tif_or_bmp == 'tif':
-        result_qr.save(f'C:\\TEMP\\QR.tif', 'tiff')
-    elif tif_or_bmp == 'bmp':
+    result_qr = createQrImg(qr_texts, qr_box_size, qr_size, tif_or_bmp)
+    if tif_or_bmp == 'bmp':
         result_qr.save(f'C:\\TEMP\\QR.bmp', 'bmp')
+    elif tif_or_bmp == 'tif':
+        result_qr.save(f'C:\\TEMP\\QR.tif', 'tiff')
+    else:
+        result_qr.save(f'C:\\TEMP\\QR.tif', 'tiff')
 
 if __name__ == "__main__":
     main(sys.argv)
