@@ -1,4 +1,4 @@
-# v201216-0826
+# v201221-1446
 
 import qrcode
 import sys
@@ -39,7 +39,7 @@ def createQrImg(qr_texts, qr_box_size=1, qr_size=''):
     qr_base = qrcode.QRCode(box_size=qr_box_size)
     qr_base.add_data(qr_texts)
     qr_base.make()
-    result_qr = qr_base.make_image(back_color="#FFFFFF", fill_color="#000000")
+    result_qr = qr_base.make_image(back_color="white", fill_color="black")
     result_qr = result_qr.resize(qr_size)
     return result_qr
 
@@ -47,14 +47,19 @@ def main(args):
     print(f'args: {args}')
     qr_texts = ''
     paper_size = ''
+    tif_or_bmp = ''
     if len(args) >= 2:
         qr_texts = args[1]
     if len(args) >= 3:
         paper_size = args[2]
+    if len(args) >= 4:
+        tif_or_bmp = args[3]
     qr_box_size, qr_size = paperSize2qrSize(paper_size)
     result_qr = createQrImg(qr_texts, qr_box_size, qr_size)
-    #result_qr.save(f'C:\\TEMP\\{qr_texts}.tif', 'tiff')
-    result_qr.save(f'C:\\TEMP\\QR.tif', 'tiff')
+    if tif_or_bmp == 'tif':
+        result_qr.save(f'C:\\TEMP\\QR.tif', 'tiff')
+    elif tif_or_bmp == 'bmp':
+        result_qr.save(f'C:\\TEMP\\QR.bmp', 'bmp')
 
 if __name__ == "__main__":
     main(sys.argv)
