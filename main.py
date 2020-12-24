@@ -1,4 +1,4 @@
-# v201225-0822
+# v201225-0831
 
 import sys
 import barcode
@@ -7,7 +7,7 @@ barcode.base.Barcode.default_writer_options['write_text'] = False
 
 def createBarcodeImg(bar_texts):
     print(f'bar_texts: {bar_texts}')
-    bar_cls = barcode.codex.Code39(code=bar_texts, writer=ImageWriter(format='BMP'), add_checksum=False)
+    bar_cls = barcode.codex.Code39(code=bar_texts, writer=ImageWriter(format='BMP', mode='1'), add_checksum=False)
     bar_render = bar_cls.render()
     bar_render.save('C:\\TEMP\\BAR.bmp')
 
