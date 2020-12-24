@@ -1,4 +1,4 @@
-# v201225-0100
+# v201225-0822
 
 import sys
 import barcode
@@ -9,7 +9,7 @@ def createBarcodeImg(bar_texts):
     print(f'bar_texts: {bar_texts}')
     bar_cls = barcode.codex.Code39(code=bar_texts, writer=ImageWriter(format='BMP'), add_checksum=False)
     bar_render = bar_cls.render()
-    bar_render.save('C:\\TEMP\\BARCODE.bmp')
+    bar_render.save('C:\\TEMP\\BAR.bmp')
 
 def main(args):
     print(f'args: {args}')
